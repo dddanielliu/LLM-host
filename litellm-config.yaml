@@ -1,0 +1,71 @@
+general_settings:
+  master_key: "sk-68cbd0a7c20377b7622f2f9c3f9f735376268384cda0d651ed2fa9fdf068c4bb"
+  enable_anthropic_api: true
+  store_prompts_in_spend_logs: true
+
+litellm_settings:
+  modify_params: true
+  drop_params: true          # 自動裁切掉遠端不支援的 Anthropic 進階欄位
+  set_verbose: false
+  # 關鍵修正：載入我們寫好的 Python 檔案與類別名稱
+  callbacks:
+    - custom_callbacks.proxy_handler_instance
+model_list:
+  - model_name: qwen3.8-27b
+    litellm_params:
+      model: qwen3.8-27b-q3xl
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+  # - model_name: qwen3.8-27b-q4
+  #   litellm_params:
+  #     model: qwen3.8-27b-q4
+  #     custom_llm_provider: openai
+  #     api_base: http://ollama:11434/v1
+  #     api_key: "not-needed"
+  - model_name: qwen3-8b             # small/fast, 40K ctx, text only
+    litellm_params:
+      model: qwen3:8b
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+  - model_name: qwen3.5-9b           # small/fast, 256K ctx, vision + tools
+    litellm_params:
+      model: qwen3.5:9b
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+  - model_name: gemma4-e4b           # small/fast, 128K ctx, vision + audio + tools
+    litellm_params:
+      model: gemma4:e4b
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+      reasoning_effort: "none"       # thinking defaults to ON; off avoids blank content
+  - model_name: llama3-8b            # small/fast, 8K ctx, text only, no thinking
+    litellm_params:
+      model: llama3:8b
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+  - model_name: "llama3.1:8b-instruct"   # Llama 3.1 8B instruct, 128K ctx, text only
+    litellm_params:
+      model: llama3.1:8b-instruct-q4_K_M
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+  - model_name: ornith-9b            # Ornith-1.0 9B dense, agentic coding, 256K ctx, tools
+    litellm_params:
+      model: ornith:9b
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+      reasoning_effort: "none"       # thinking defaults to ON; off avoids blank content
+  - model_name: "Llama-3.1-TAIDE-LX-8B-Chat"   # TAIDE via Modelfile import (tetf/Q4_K_M), works in Ollama
+    litellm_params:
+      model: "Llama-3.1-TAIDE-LX-8B-Chat:Q4_K_M"
+      custom_llm_provider: openai
+      api_base: http://ollama:11434/v1
+      api_key: "not-needed"
+# litellm_settings:
+#   default_user_models: ["no-default-models"]

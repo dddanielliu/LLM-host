@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Model weights (large GGUF files - do not track)
+models/*.gguf
+taide-import/*.gguf
+ollama_data/models/
+
+# Cache directories
+ollama_data/cache/
+**/.cache/
+hf_cache/
+
+# Database data
+postgres_data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment
+.env
+.env.*
